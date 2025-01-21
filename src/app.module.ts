@@ -6,10 +6,15 @@ import { CommonModule } from './common/common.module';
 import { AuthModule } from './auth/auth.module';
 import { ProjectModule } from './maintainers/project/project.module';
 import { RequestModule } from './maintainers/request/request.module';
+import { EnvConfiguration } from './config/env.config';
+import { JoiValidationSchema } from './config/joi.validation';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      load: [EnvConfiguration],
+      validationSchema: JoiValidationSchema,
+    }),
 
     TypeOrmModule.forRoot({
       ssl: process.env.STAGE === 'prod',
