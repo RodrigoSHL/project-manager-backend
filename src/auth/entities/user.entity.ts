@@ -1,4 +1,5 @@
 import { Client } from 'src/maintainers/client/entities/client.entity';
+import { Project } from 'src/maintainers/project/entities/project.entity';
 import {
   BeforeInsert,
   BeforeUpdate,
@@ -51,6 +52,9 @@ export class User {
 
   @OneToMany(() => Client, (client) => client.user)
   clients: Client[];
+
+  @OneToMany(() => Client, (client) => client.user)
+  projects: Project[];
 
   @BeforeInsert()
   checkFieldsBeforeInsert() {
